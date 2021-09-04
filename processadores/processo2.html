@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>processadores</title>
+    <style>
+         body {
+            background-color: darkslategray;
+            margin: 10%;
+            text-align: justify;
+            padding: 5%;
+            border-style: solid;
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        table ,td{
+            border-style: solid;
+            font-size: 18px;
+        }
+        p,li{
+            font-size: 18px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        a:visited{
+            color: brown;
+        }
+        a:link{
+            color: rgb(231, 216, 216);
+        }
+        a:hover{
+            color: forestgreen;
+        }
+        a:active{
+            color: red;
+        }
+        ul{
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        #lista{
+            list-style: decimal;
+        }
+    </style>
+</head>
+
+<body>
+    <h1> partes de um processo - contexto de hardware</h1>
+    <ul id="lista">
+        <li>Armazena algumas informações</li>
+        <li>Conteudo dos registradores gerais da UCP</li>
+        <li>Além dos registradores específicos, como: <br> programa counter(PC); ou contador de instruções
+            <br>starck pointer (SP); ou Apontador de pilha <br>program status word (PSW); registrador de status
+        </li>
+    </ul>
+    <img src="processo.png" alt="contexto de hardware">
+    <h2>process control block</h2>
+    <p>
+        É uma estrutura do Sistema Operacional responsável pela implementação dos
+        processos. É através dele que o SO mantém informações sobre o contexto de
+        hardware, software e espaço de endereçamento. Ele se encontra na memoria principal.
+    </p>
+    <h2>mudança de estado do processo</h2>
+    <table>
+        <caption> origens da mudança</caption>
+        <td>pronto➡️evento voluntario<br>
+            Processo criado aguardando uma “oportunidade” para ser executado.
+        </td>
+        <tr>
+            <td>Execução➡️espera<br>
+                Muda de estado por eventos gerados pelo próprio processo ou por eventos
+                externos.
+            </td>
+        </tr>
+        <td>Espera➡️pronto<br>
+            Quando uma solicitação é atendida ou um recurso esperado é concedido.
+        </td>
+        <tr>
+            <td>Execução➡️pronto<br>
+                Acontece por um evento do sistema, por exemplo, quando acaba o seu tempo de
+                execução ou é criado um processo com prioridade maior.
+            </td>
+        </tr>
+    </table>
+    <h2>criação de eliminação de um processo</h2>
+    <p>
+        Criação → o Sistema Operacional já criou um novo PCB, porém ainda não pode
+        colocá-lo na lista de processos do estado de pronto. <br>
+        o motivo se dar porque Alguns Sistemas Operacionais limitam o número de processos ativos em função
+        de: recursos disponíveis ou ajuste de desempenho.
+    </p>
+    <p>
+        Terminado → o processo não terá mais nenhum recurso disponibilizado para sua
+        execução. PORÉM, o PCB ainda existe. O Sistema Operacional ainda pode
+        recuperar informações sobre o processo e abri-lo novamente.
+        O término do processo pode acontecer por três razões:
+        TÉRMINO NORMAL DE EXECUÇÃO;
+        ELIMINAÇÃO POR UM OUTRO PROCESSO;
+        ELIMINAÇÃO FORÇADA POR AUSÊNCIA DE RECURSOS.
+    </p>
+    <h2>Processos CPU-bound e I/O-bound</h2>
+    <p>
+        CPU-bound → quando o processo passa mais tempo no estado de execução, utilizando o processador.
+        Exemplo: aplicações científicas, pois realizam um elevado número de cálculos.
+        I/O-bound → quando o processo passa maior parte do tempo no estado de espera. Exemplo: um banco de
+        dados, que usam muita leitura, processamento e gravação.
+    </p>
+    <h2>processos independentes e subprocessos</h2>
+    <h3>processos independentes</h3>
+    <p>
+        É considerada a maneira mais simples de se implantar a concorrência entre
+        processos.
+        Não existe nenhum vínculo do processo CRIADO com o processo CRIADOR.
+        A criação de um novo Processo Independente exige a alocação de um novo PCB.
+        Que conterá novos contextos de Hardware, Software e Espaços de
+        Endereçamento próprios.
+    </p>
+    <h3>subprocessos</h3>
+    <p>
+        São processos criados dentro de uma estrutura hierárquica. O processo criador de
+        subprocessos recebe o nome de processo-pai e os subprocessos criados,
+        processo-filho. <br>
+        <strong> CARACTERÍSTICAS IMPORTANTE
+        EXISTE A DEPENDÊNCIA ENTRE O PROCESSO CRIADOR E O
+        SUBPROCESSO.
+        PROCESSO-PAI MORRE = PROCESSO-FILHO MORRE TAMBÉM;
+        QUANDO UM SOBPROCESSO É CRIADO O PROCESSO PAI CEDE PARTE
+        DE SUAS QUOTAS AO PROCESSO FILHO.</strong>
+    </p>
+    <a href="processadores.html">voltar</a>
+</body>
+
+</html>
